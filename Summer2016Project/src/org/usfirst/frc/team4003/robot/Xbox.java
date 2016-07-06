@@ -8,6 +8,7 @@ public class Xbox {
 	* Use an XBox controller like a regular Joystick class
 	*
 	* @author Jon Morton
+	* 
 	*/
 
 	private DriverStation _ds;
