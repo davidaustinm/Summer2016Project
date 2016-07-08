@@ -1,26 +1,33 @@
-
 package org.usfirst.frc.team4003.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team4003.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ExampleCommand extends Command {
+public class DriveTrainCommand extends Command {
 
-    public ExampleCommand() {
+    public DriveTrainCommand() {
         // Use requires() here to declare subsystem dependencies
-        //requires(Robot.exampleSubsystem);
+        requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     }
+    
+    public double deadBand(double x) {
+    	if (Math.abs(x) < 0.1) return 0;
+    	return x;
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double leftPower = -Robot.oi.driver.getLeftJoyY();
+    	double rightPower = -Robot.oi.driver.getRightJoyY();
+    	Robot.driveTrain.setPower(deadBand(leftPower), deadBand(rightPower));
     }
 
     // Make this return true when this Command no longer needs to run execute()
