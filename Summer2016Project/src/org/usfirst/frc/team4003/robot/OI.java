@@ -9,6 +9,7 @@ import org.usfirst.frc.team4003.robot.commands.ExampleCommand;
  */
 public class OI {
 	public Xbox driver = new Xbox(0);
+	public Xbox operator = new Xbox(1);
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button

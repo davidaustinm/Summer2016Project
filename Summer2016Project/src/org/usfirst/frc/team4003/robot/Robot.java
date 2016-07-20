@@ -5,8 +5,11 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+import org.usfirst.frc.team4003.robot.commands.DriveForwardForTime;
 import org.usfirst.frc.team4003.robot.commands.ExampleCommand;
 import org.usfirst.frc.team4003.robot.subsystems.*;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -20,6 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static final DriveTrain driveTrain = new DriveTrain();
+	public static final Conveyor conveyor = new Conveyor();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -74,6 +78,7 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
+        autonomousCommand = new DriveForwardForTime();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
