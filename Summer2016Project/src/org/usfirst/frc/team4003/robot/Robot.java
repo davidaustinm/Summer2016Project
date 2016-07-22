@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team4003.robot.commands.DriveForwardForTime;
-import org.usfirst.frc.team4003.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4003.robot.commands.*;
 import org.usfirst.frc.team4003.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -24,6 +24,8 @@ public class Robot extends IterativeRobot {
 
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Conveyor conveyor = new Conveyor();
+	public static final Sensors sensors = new Sensors();
+	public static final Shooter shooter = new Shooter();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -78,7 +80,7 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-        autonomousCommand = new DriveForwardForTime();
+        autonomousCommand = new DriveForwardForDistance(60);
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -102,6 +104,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Left Drive Encoder",  sensors.getLeftDriveEncoder());
+        SmartDashboard.putNumber("Right Drive Encoder", sensors.getRightDriveEncoder());
     }
     
     /**

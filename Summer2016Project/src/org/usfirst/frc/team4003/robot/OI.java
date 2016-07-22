@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4003.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team4003.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4003.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -10,6 +10,14 @@ import org.usfirst.frc.team4003.robot.commands.ExampleCommand;
 public class OI {
 	public Xbox driver = new Xbox(0);
 	public Xbox operator = new Xbox(1);
+	public XboxButton runConveyor;
+	public XboxButton shooterButton;
+	public OI() {
+		runConveyor = new XboxButton(operator, XboxButton.BUTTONRB);
+		runConveyor.whileHeld(new RunConveyor());
+		shooterButton = new XboxButton(operator, XboxButton.BUTTONLB);
+		shooterButton.whileHeld(new ShooterCommand());
+	}
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
