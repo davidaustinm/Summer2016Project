@@ -80,7 +80,8 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-        autonomousCommand = new DriveForwardForDistance(60);
+        autonomousCommand = new DriveAndSpin(20.0,90.0,"Right");
+      //I changed autonomous command.  Carl.
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -96,6 +97,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 

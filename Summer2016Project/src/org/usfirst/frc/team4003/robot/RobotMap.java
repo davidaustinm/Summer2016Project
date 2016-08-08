@@ -10,6 +10,8 @@ public class RobotMap {
 	public static int LEFTBACKDRIVE = 16;
 	public static int RIGHFRONTDRIVE = 2;
 	public static int RIGHTBACKDRIVE = 14;
+	public static int ROBOTWIDTH = 20; //Inches
+	public static int ROBOTLENGTH = 30; //Inches
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;
