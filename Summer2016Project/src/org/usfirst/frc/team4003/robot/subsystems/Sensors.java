@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4003.robot.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.*;
 
@@ -11,10 +13,17 @@ public class Sensors extends Subsystem {
 	double driveDifference;
 	double leftEncoder;
 	double rightEncoder;
+	AHRS ahrs;
+	double yawOffset = 0;
 	
 	public Sensors() {
 		leftDriveEncoder = new Encoder(0, 1);
 		rightDriveEncoder = new Encoder(2,3);
+		try {
+			ahrs = new AHRS(SPI.Port.kMXP);
+		} catch (RuntimeException ex ) {
+			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+    	}	
 	}
 	
 	public int getLeftDriveEncoder() {
@@ -35,9 +44,30 @@ public class Sensors extends Subsystem {
 		r2 -= r1;
 		l2 -= l1;
 		return(l2 -r2);
-		
-		
-		
+	}
+	
+	public void setYawOffset() {
+		yawOffset = getYaw();
+	}
+	
+	public double getYaw(){
+		return (-ahrs.getYaw()) - yawOffset;
+	}
+	
+	public double getRoll(){
+		return ahrs.getRoll();
+	}
+	
+	public double getPitch(){
+		return ahrs.getPitch();
+	}
+	
+	public void resetYaw(){
+		ahrs.zeroYaw();
+	}
+	
+	public double getAngle() {
+		return -ahrs.getAngle();
 	}
 	
     
