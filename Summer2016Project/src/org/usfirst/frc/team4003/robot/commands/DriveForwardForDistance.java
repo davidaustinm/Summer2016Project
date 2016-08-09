@@ -7,7 +7,7 @@ import org.usfirst.frc.team4003.robot.*;
 /**
  *
  */
-public class DriveForwardForDistance extends CommandGroup {
+public class DriveForwardForDistance extends Command {
 	double distance;
 	double stopDistance;
     public DriveForwardForDistance(double d) {
