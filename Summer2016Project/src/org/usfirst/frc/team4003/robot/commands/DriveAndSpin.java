@@ -21,7 +21,7 @@ public class DriveAndSpin extends CommandGroup {
     	degrees = Degrees;
     	direction = Direction;
     	addSequential(new DriveForwardForDistance(distance));
-    	addSequential(new SpinInPlace(degrees,Direction));
+    	addSequential(new SpinInPlace(degrees,direction));
     	
     }
 }
