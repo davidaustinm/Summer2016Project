@@ -81,6 +81,7 @@ public class Robot extends IterativeRobot {
     	
     	// schedule the autonomous command (example)
         autonomousCommand = new DriveAndSpin(20.0,90.0,"Right");
+        autonomousCommand = new DriveWhileRunningConveyor();
       //I changed autonomous command.  Carl.
         if (autonomousCommand != null) autonomousCommand.start();
     }
