@@ -9,6 +9,8 @@ import org.usfirst.frc.team4003.robot.*;
 public class DriveForwardForDistance extends Command {
 	double distance;
 	double stopDistance;
+	double targetYaw = 0;
+	double Kp = 0.02;
     public DriveForwardForDistance(double d) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
@@ -22,7 +24,14 @@ public class DriveForwardForDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.setPower(0.5, 0.5);
+    	double currentYaw = Robot.sensors.getYaw();
+    	double error = targetYaw - currentYaw;
+    	double correction = Kp * error;
+    	double leftPower = 0.5 - correction;
+    	double rightPower = 0.5 + correction;
+    	
+    	
+    	Robot.driveTrain.setPower(leftPower, rightPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()

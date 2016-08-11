@@ -80,8 +80,9 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
+        sensors.resetYaw();
         autonomousCommand = new DriveAndSpin(20.0,90.0,"Right");
-        autonomousCommand = new DriveWhileRunningConveyor();
+        autonomousCommand = new DriveForwardForDistance(300);
       //I changed autonomous command.  Carl.
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -90,6 +91,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	SmartDashboard.putNumber("Yaw", sensors.getYaw());
         Scheduler.getInstance().run();
     }
 
@@ -98,7 +100,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-    	
+    	sensors.resetYaw();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
@@ -107,6 +109,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Yaw", sensors.getYaw());
         SmartDashboard.putNumber("Left Drive Encoder",  sensors.getLeftDriveEncoder());
         SmartDashboard.putNumber("Right Drive Encoder", sensors.getRightDriveEncoder());
     }
